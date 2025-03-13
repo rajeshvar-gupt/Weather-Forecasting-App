@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #36D1DC, #5B86E5);
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: white;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            padding: 10px;
+            margin: 10px;
+            width: 90%;
+        }
+        button {
+            background: #5B86E5;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+        }
+        .result {
+            background: white;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Live Weather Forecast</h1>
+    
+    <form method="POST">
+        <label>Enter City:</label>
+        <input type="text" name="city" required>
+        
+        <label>Select Date:</label>
+        <input type="date" name="date" required>
+        
+        <label>Select Time:</label>
+        <input type="time" name="time" required>
+        
+        <button type="submit">Get Forecast</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            <h2>Weather Prediction for {{ prediction.city }}</h2>
+            <p><b>Date:</b> {{ prediction.date }}</p>
+            <p><b>Time:</b> {{ prediction.time }}</p>
+            <p><b>Current Temperature:</b> {{ prediction.current_temperature }}°C</p>
+            <p><b>Predicted Temperature:</b> {{ prediction.predicted_temperature }}°C</p>
+            <p><b>Humidity:</b> {{ prediction.humidity }}%</p>
+            <p><b>Pressure:</b> {{ prediction.pressure }} hPa</p>
+            <p><b>Wind Speed:</b> {{ prediction.wind_speed }} m/s</p>
+            <p><b>Condition:</b> {{ prediction.weather_condition }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
